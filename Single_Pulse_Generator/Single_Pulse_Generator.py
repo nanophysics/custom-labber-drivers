@@ -49,9 +49,6 @@ class Driver(LabberDriver):
         return value
 
     def init_pulses(self):
-        print(
-            f"                     ******  init pulses {self.sampling_rate}, {self.n_pulses}"
-        )
         self.pulses = []
         for i in range(self.n_pulses):
             pulse = SquarePulse(sampling_rate=self.sampling_rate)
