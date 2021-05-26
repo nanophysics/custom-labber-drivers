@@ -8,6 +8,7 @@ class Driver(LabberDriver):
 
     def performOpen(self, options={}):
         """Perform the operation of opening the instrument connection."""
+        self.memory = 32500 # Memory limit for UHFLI
         self.sequence = self.getValue("Sequence Type")
         self.sampling_rate = self.getValue("Sampling Rate")
         self.n_pulses = int(self.getValue("Number of Pulses"))
@@ -44,6 +45,10 @@ class Driver(LabberDriver):
             array = np.hstack([p.array[0] for p in self.pulses])
             dt = 1 / self.sampling_rate
             value = quant.getTraceDict(array, dt=dt)
+            if array.size > self.memory:
+                self.log("AWG out of memory", level=30)
+                raise ValueError("AWG out of memory")
+            
         else:
             value = quant.getValue()
         return value
