@@ -24,10 +24,10 @@ z_dimension_step_number, z_dimension_step_size, z_dimension_indicator = f.getThi
 for i in range(0, z_dimension_step_number):
     if z_dimension_indicator == 1:
         for num,name in enumerate(quants_import,0):
-            MainDict[dictnames[num]][str(j + i)]=f.getData(name)[:, i*z_dimension_step_size : (i + 1)*z_dimension_step_size - 1]
+            MainDict[dictnames[num]][str(j + i)]=f.getData(name)[:, i*z_dimension_step_size : (i + 1)*z_dimension_step_size - 1].transpose()
 
     else:
         for num,name in enumerate(quants_import,0):
-            MainDict[dictnames[num]][str(j + i)]=f.getData(name)[i*z_dimension_step_size : (i + 1)*z_dimension_step_size - 1, :]
+            MainDict[dictnames[num]][str(j + i)]=f.getData(name)[i*z_dimension_step_size : (i + 1)*z_dimension_step_size - 1, :].transpose()
         
-print('Idc_compact contains the keys: '+str(Idc_compact.keys()))
+print('Idc_compact contains the keys: '+str(MainDict[dictnames[0]].keys()))

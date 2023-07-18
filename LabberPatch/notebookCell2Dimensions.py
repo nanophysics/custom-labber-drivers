@@ -19,5 +19,5 @@ print('New names of quantities:'); print(repr(dictnames))
 #j is the number that will be converted to the key string
 j=1; key=str(j)                            
 for num,name in enumerate(quants_import,0):
-    MainDict[dictnames[num]][key]=f.getData(name)
-print('Idc_compact contains the keys: '+str(Idc_compact.keys()))
+    MainDict[dictnames[num]][key]=f.getData(name).transpose()
+print('Idc_compact contains the keys: '+str(MainDict[dictnames[0]].keys()))
